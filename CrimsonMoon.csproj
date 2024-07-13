@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <AssemblyName>CrimsonMoon</AssemblyName>
+    <Description>A sacraficial alter to praise the moon! Honor it in return for a blood moon!</Description>
+    <Version>1.0.0</Version>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <LangVersion>latest</LangVersion>
+    <RootNamespace>CrimsonMoon</RootNamespace>
+    <AssemblyVersion>0.1.8.0</AssemblyVersion>
+    <FileVersion>0.1.8.0</FileVersion>
+    <InformationalVersion>0.1.8+1.Branch.main.Sha.4435243bd013dc988e1f142db6f6cf5c889d1a5e</InformationalVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="BepInEx.Unity.IL2CPP" Version="6.0.0-be.690" IncludeAssets="compile" />
+    <PackageReference Include="BepInEx.Core" Version="6.0.0-be.690" IncludeAssets="compile" />
+    <PackageReference Include="BepInEx.PluginInfoProps" Version="2.*" />
+    <PackageReference Include="VRising.Unhollowed.Client" Version="1.0.*" />
+    <PackageReference Include="VRising.VampireCommandFramework" Version="0.9.*" />
+    <PackageReference Include="VRising.Bloodstone" Version="0.1.*" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".github\workflows\build.yml" />
+    <None Include=".github\workflows\release.yml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="images\" />
+  </ItemGroup>
+</Project>
