@@ -1,5 +1,4 @@
-﻿using Bloodstone.API;
-using Il2CppInterop.Runtime;
+﻿using Il2CppInterop.Runtime;
 using ProjectM;
 using ProjectM.Shared;
 using Stunlock.Core;
@@ -34,7 +33,7 @@ internal class DropClearSystem
             Options = EntityQueryOptions.IncludeDisabled
         };
 
-        dropItemQuery = VWorld.Server.EntityManager.CreateEntityQuery(dropItemQueryDesc.All);
+        dropItemQuery = Core.Server.EntityManager.CreateEntityQuery(dropItemQueryDesc.All);
     }
 
     IEnumerable<Entity> GetDropItems()
@@ -54,16 +53,16 @@ internal class DropClearSystem
         foreach (var entity in GetDropItems())
         {
             if (shouldClear != null && !shouldClear(entity)) continue;
-            if (VWorld.Server.EntityManager.TryGetBuffer<InventoryBuffer>(entity, out var inventory))
+            if (Core.Server.EntityManager.TryGetBuffer<InventoryBuffer>(entity, out var inventory))
             {
                 foreach (var item in inventory)
                 {
                     if (item.ItemEntity.GetEntityOnServer() == Entity.Null) continue;
-                    DestroyUtility.Destroy(VWorld.Server.EntityManager, item.ItemEntity.GetEntityOnServer());
+                    DestroyUtility.Destroy(Core.Server.EntityManager, item.ItemEntity.GetEntityOnServer());
                 }
             }
 
-            DestroyUtility.Destroy(VWorld.Server.EntityManager, entity);
+            DestroyUtility.Destroy(Core.Server.EntityManager, entity);
             count++;
         }
         return count;

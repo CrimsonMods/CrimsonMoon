@@ -1,5 +1,5 @@
 # CrimsonMoon
-`Server side only` mod to change drop rate.
+`Server side only`
 
 Allows the players the ability to trigger Blood Moon to take place by sacraficing a set number of a specified item within a range of a specific location.
 
@@ -9,7 +9,7 @@ You can find new coordinates using KindredCommands' "whereami" command.
 
 ## Installation
 * Install [BepInEx](https://v-rising.thunderstore.io/package/BepInEx/BepInExPack_V_Rising/)
-* Install [Bloodstone](https://github.com/decaprime/Bloodstone/releases/tag/v0.2.1)
+* Install [VampireCommandFramework](https://thunderstore.io/c/v-rising/p/deca/VampireCommandFramework/)
 * Extract _CrimsonMoon.dll_ into _(VRising server folder)/BepInEx/plugins_
 
 ## Configurable Values
@@ -52,4 +52,6 @@ Or buy/play my games!
 
 [Train Your Minibot](https://store.steampowered.com/app/713740/Train_Your_Minibot/) 
 
-[Boring Movies](https://store.steampowered.com/app/1792500/Boring_Movies/)
+[Boring Movies](https://store.steampowered.com/app/1792500/Boring_Movies/) **FREE TO PLAY**
+
+**I do commission mod work. Contact me on Discord (skytech6) for any Unity modding needs!**

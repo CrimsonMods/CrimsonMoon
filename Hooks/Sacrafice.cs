@@ -1,14 +1,10 @@
-﻿using Bloodstone.API;
-using HarmonyLib;
+﻿using HarmonyLib;
 using ProjectM;
 using Stunlock.Core;
-using System;
-using System.IO;
+using System.Collections;
 using Unity.Collections;
 using Unity.Entities;
 using UnityEngine;
-using CrimsonMoon.Utils;
-using System.Collections;
 
 namespace CrimsonMoon.Hooks;
 
@@ -26,7 +22,7 @@ internal class Sacrafice
             
             foreach(var entity in entities)
             {
-                if (VWorld.Server.EntityManager.TryGetComponentData<DropItemAroundPosition>(entity, out DropItemAroundPosition item))
+                if (Core.Server.EntityManager.TryGetComponentData<DropItemAroundPosition>(entity, out DropItemAroundPosition item))
                 {
                     if (item.ItemHash == new PrefabGUID(Plugin.Settings.SACRAFICE_GUID.Value) && item.Amount >= Plugin.Settings.MIN_AMOUNT.Value)
                     {
@@ -36,9 +32,9 @@ internal class Sacrafice
 
                         if (distance < 10)
                         {
-                            ServerChatUtils.SendSystemMessageToAllClients(VWorld.Server.EntityManager, "The Blood Alter runs red!");
+                            ServerChatUtils.SendSystemMessageToAllClients(Core.Server.EntityManager, "The Blood Alter runs red!");
 
-                            var eventsSystem = VWorld.Server.GetExistingSystemManaged<DebugEventsSystem>();
+                            var eventsSystem = Core.Server.GetExistingSystemManaged<DebugEventsSystem>();
                             eventsSystem.JumpToNextBloodMoon();
 
                             Core.StartCoroutine(Clear(pointB, 20));
@@ -53,27 +49,7 @@ internal class Sacrafice
             yield return new WaitForSeconds(1f);
 
             var cleared = Core.DropItem.ClearDropItemsInRadius(vector, radius);
-            ServerChatUtils.SendSystemMessageToAllClients(VWorld.Server.EntityManager, $"Cleared {cleared}");
-        }
-
-        public static void EntityCompomponentDumper(string filePath, Entity entity)
-        {
-            File.AppendAllText(filePath, $"--------------------------------------------------" + Environment.NewLine);
-            File.AppendAllText(filePath, $"Dumping components of {entity.ToString()}:" + Environment.NewLine);
-
-            foreach (var componentType in VWorld.Server.EntityManager.GetComponentTypes(entity))
-            { File.AppendAllText(filePath, $"{componentType.ToString()}" + Environment.NewLine); }
-
-            File.AppendAllText(filePath, $"--------------------------------------------------" + Environment.NewLine);
-
-            File.AppendAllText(filePath, DumpEntity(entity));
-        }
-
-        private static string DumpEntity(Entity entity, bool fullDump = true)
-        {
-            var sb = new Il2CppSystem.Text.StringBuilder();
-            ProjectM.EntityDebuggingUtility.DumpEntity(VWorld.Server, entity, fullDump, sb);
-            return sb.ToString();
+            ServerChatUtils.SendSystemMessageToAllClients(Core.Server.EntityManager, $"Cleared {cleared}");
         }
     }
 

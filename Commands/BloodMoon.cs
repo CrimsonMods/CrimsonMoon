@@ -1,7 +1,4 @@
-﻿using Bloodstone.API;
-using CrimsonMoon.Structs;
-using ProjectM;
-using Unity.Transforms;
+﻿using ProjectM;
 using VampireCommandFramework;
 
 namespace CrimsonMoon.Commands;
@@ -12,7 +9,7 @@ internal class BloodMoon
     [Command("trigger", "t", description: "Forces next moon to be blood", adminOnly: true)]
     public static void TriggerBloodMoon(ChatCommandContext ctx)
     {
-        var settings = VWorld.Server.GetExistingSystemManaged<DebugEventsSystem>();
+        var settings = Core.Server.GetExistingSystemManaged<DebugEventsSystem>();
         settings.JumpToNextBloodMoon();
 
         ctx.Reply($"Jumping to Next Blood Moon");
